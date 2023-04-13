@@ -119,7 +119,13 @@ export const Post: React.FC<T.PostProps> = ({
             <Button skin="outlined" onClick={closeEditModal}>
               Cancel
             </Button>
-            <Button skin="success" onClick={handleEditPost}>
+            <Button
+              skin="success"
+              onClick={handleEditPost}
+              disabled={
+                (newTitle.length <= 0 || newContent.length <= 0) && true
+              }
+            >
               Save
             </Button>
           </S.ModalButtonsContainer>
