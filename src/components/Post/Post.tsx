@@ -6,7 +6,7 @@ import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
 import { api } from "../../actions";
 import { UserContext, PostsContext } from "../../context";
 import { Icon, Modal, Typography, Button, Input, TextArea, Loading } from "../";
-import { getMinutesDifference } from "../../utils";
+import { REFETCH_DELAY, getMinutesDifference } from "../../utils";
 
 export const Post: React.FC<T.PostProps> = ({
   id,
@@ -30,21 +30,21 @@ export const Post: React.FC<T.PostProps> = ({
 
   function handleDeletePost(id: number) {
     api.delete(id);
-    setIsPopUpOpen(false);
     setTimeout(() => {
-      refetch && refetch();
-    }, 300);
+      refetch?.();
+    }, REFETCH_DELAY);
+    setIsPopUpOpen(false);
   }
 
   function handleEditPost(id: number) {
     api.edit(id, newPost);
-    setIsModalOpen(false);
     setTimeout(() => {
-      refetch && refetch();
-    }, 300);
+      refetch?.();
+    }, REFETCH_DELAY);
+    setIsModalOpen(false);
   }
 
-  function showPopUp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function showPopUp(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.preventDefault();
     setIsPopUpOpen(true);
   }
@@ -53,7 +53,7 @@ export const Post: React.FC<T.PostProps> = ({
     setIsPopUpOpen(false);
   }
 
-  function showModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function showModal(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.preventDefault();
     setIsModalOpen(true);
   }
@@ -90,13 +90,13 @@ export const Post: React.FC<T.PostProps> = ({
         </S.UserContainer>
         <S.PostContent>{content}</S.PostContent>
       </S.CardContent>
-      <Modal isOpen={isPopUpOpen} onClose={() => closePopUp()}>
+      <Modal isOpen={isPopUpOpen} onClose={closePopUp}>
         <S.PopUp>
           <Typography variant="paragraph">
             Are you sure you want to delete this item?
           </Typography>
           <S.ModalButtonsContainer>
-            <Button skin="outlined" onClick={() => closePopUp()}>
+            <Button skin="outlined" onClick={closePopUp}>
               Cancel
             </Button>
             <Button skin="error" onClick={() => handleDeletePost(id)}>
@@ -106,7 +106,7 @@ export const Post: React.FC<T.PostProps> = ({
         </S.PopUp>
       </Modal>
 
-      <Modal isOpen={isModalOpen} onClose={() => closeModal()}>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
         <S.EditModal>
           <Typography variant="title" as="h2">
             Edit item
@@ -124,7 +124,7 @@ export const Post: React.FC<T.PostProps> = ({
             onChange={(e) => setContent(e.target.value)}
           />
           <S.ModalButtonsContainer>
-            <Button skin="outlined" onClick={() => closeModal()}>
+            <Button skin="outlined" onClick={closeModal}>
               Cancel
             </Button>
             <Button skin="success" onClick={() => handleEditPost(id)}>

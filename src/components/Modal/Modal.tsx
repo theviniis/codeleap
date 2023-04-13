@@ -12,7 +12,7 @@ export const Modal = ({
   const handleEscKey = useCallback(
     ({ key }: KeyboardEvent): void => {
       if (key === "Escape") {
-        onClose && onClose();
+        onClose?.();
       }
     },
     [onClose]
