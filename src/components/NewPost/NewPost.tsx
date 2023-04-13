@@ -5,23 +5,36 @@ import { TextArea } from "../Textarea";
 import { Button } from "../Button";
 import * as S from "./styles";
 import { UserContext } from "../../context";
-import { NEW_POST, useFetch } from "../../actions";
-import { Loading } from "../Loading";
+import { api } from "../../actions";
+import { PostsContext } from "../../context/PostsContext";
 
 export const NewPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { username } = useContext(UserContext);
-  const { request, loading } = useFetch();
+  const { setPosts } = useContext(PostsContext);
+
+  const newPost = {
+    username,
+    title,
+    content,
+  } as const;
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const { url, options } = NEW_POST({
-      username,
-      title,
-      content,
-    });
-    request(url, options);
+    api.post(newPost);
+    setPosts((currentValue) => [
+      {
+        id: Math.floor(Math.random()) * 9999,
+        created_datetime: new Date(),
+        title,
+        username,
+        content,
+      },
+      ...currentValue,
+    ]);
+    setTitle("");
+    setContent("");
   }
 
   return (
@@ -39,10 +52,8 @@ export const NewPost = () => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Button
-        disabled={(title.length <= 0 || content.length <= 0 || loading) && true}
-      >
-        {loading ? <Loading /> : "Create"}
+      <Button disabled={(title.length <= 0 || content.length <= 0) && true}>
+        {"Create"}
       </Button>
     </S.NewPost>
   );

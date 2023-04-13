@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const API_URL = "https://dev.codeleap.co.uk/careers/";
 
 export function GET_POSTS() {
@@ -6,7 +8,7 @@ export function GET_POSTS() {
     options: {
       method: "GET",
     },
-  };
+  } as const;
 }
 
 export function NEW_POST(
@@ -21,7 +23,7 @@ export function NEW_POST(
       },
       body: JSON.stringify(body),
     },
-  };
+  } as const;
 }
 
 export function DELETE_POST(id: number) {
@@ -30,7 +32,7 @@ export function DELETE_POST(id: number) {
     options: {
       method: "DELETE",
     },
-  };
+  } as const;
 }
 
 export function EDIT_POST(
@@ -46,5 +48,48 @@ export function EDIT_POST(
       },
       body: JSON.stringify(body),
     },
-  };
+  } as const;
 }
+
+export const api = {
+  get: async function getPosts() {
+    const url = API_URL;
+    const response = await axios.get<RESPONSE_PROPS>(url);
+    return response.data;
+  },
+  post: async function postPost(
+    data: Record<"username" | "title" | "content", string>
+  ) {
+    const url = API_URL;
+    const response = await axios.post(url, data);
+    return response.data;
+  },
+  delete: async function deletePost(id: number) {
+    const url = API_URL + `${id}/`;
+    const response = await axios.delete(url);
+    return response.status;
+  },
+  edit: async function editPost(
+    id: number,
+    body: Record<"title" | "content", string>
+  ) {
+    const url = API_URL + `${id}/`;
+    const response = await axios.patch(url, body);
+    return response.status;
+  },
+} as const;
+
+export type RESPONSE_PROPS = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: POST_PROPS[];
+};
+
+export type POST_PROPS = {
+  content: string;
+  created_datetime: Date;
+  id: number;
+  title: string;
+  username: string;
+};

@@ -4,7 +4,7 @@ Este app foi criado para o teste de desenvolvedor front-end da **CodeLeap**.
 
 ## Stacks utilizadas
 
-**Front-end:** React, react-router-dom, history, styled-components
+**Front-end:** React, react-router-dom, history, styled-components, react-query, axios
 
 ## Roadmap
 
@@ -23,8 +23,6 @@ Este app foi criado para o teste de desenvolvedor front-end da **CodeLeap**.
 - Ajustes na responsividade;
 
 ## Melhorias
-
-- Ao **adicionar, editar ou deletar** um post, atualizar a timeline.
 
 - Melhor feedback na exibição dos erros e requisições;
 
