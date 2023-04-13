@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Label = styled(Typography).attrs({
-  forwardedAs: "label",
   variant: "label",
 })`
   ${({ theme }) => css`

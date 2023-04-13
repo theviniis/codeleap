@@ -14,7 +14,9 @@ export const Input: React.FC<T.InputProps> = ({
 }) => {
   return (
     <S.Wrapper>
-      <S.Label>{label}</S.Label>
+      <S.Label forwardedAs="label" htmlFor={id}>
+        {label}
+      </S.Label>
       <S.Input
         id={id}
         placeholder={placeholder}
