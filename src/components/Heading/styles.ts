@@ -6,6 +6,10 @@ export const Wrapper = styled.div`
     background-color: ${theme.colors.primary};
     padding: ${theme.spacing.lg};
     height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: ${theme.spacing.md};
   `}
 `;
 
@@ -15,6 +19,4 @@ export const Heading = styled(Typography).attrs({
   truncate: true,
 })`
   color: #fff;
-  display: flex;
-  justify-content: space-between;
 `;

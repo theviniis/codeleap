@@ -59,8 +59,7 @@ export const Post: React.FC<T.PostProps> = ({
 
   return (
     <S.Wrapper {...props}>
-      <S.Header>
-        {title}
+      <S.Header title={title}>
         {context.username === username && (
           <S.IconsContainer>
             <Icon onClick={(e) => showPopUp(e)}>

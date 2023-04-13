@@ -13,7 +13,7 @@ export const Main = () => {
 
   return (
     <S.Wrapper>
-      <Heading>CodeLeap Network</Heading>
+      <Heading title="CodeLeap Network" />
       <NewPost />
       {isLoading && <Loading />}
       {posts &&

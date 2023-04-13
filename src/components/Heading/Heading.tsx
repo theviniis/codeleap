@@ -1,10 +1,17 @@
 import { ReactNode } from "react";
 import * as S from "./styles";
 
-export const Heading = ({ children }: { children: ReactNode }) => {
+export const Heading = ({
+  children,
+  title,
+}: {
+  children?: ReactNode;
+  title: string;
+}) => {
   return (
     <S.Wrapper>
-      <S.Heading>{children}</S.Heading>
+      <S.Heading>{title}</S.Heading>
+      {children}
     </S.Wrapper>
   );
 };
