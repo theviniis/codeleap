@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Icon } from "../../components";
+import { Heading, Icon } from "../../components";
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -8,12 +8,12 @@ export const Wrapper = styled.div`
     gap: ${theme.spacing.lg};
     padding-inline: ${theme.spacing.lg};
     background-color: ${theme.colors.background};
-    & > h2 {
-      padding-inline: 37px;
-      padding-block: 27px;
-      height: 80px;
-    }
   `};
+`;
+export const Header = styled(Heading)`
+  padding-inline: 37px;
+  padding-block: 27px;
+  height: 80px;
 `;
 
 export const ThemeIcon = styled(Icon)`
