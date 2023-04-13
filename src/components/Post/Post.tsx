@@ -28,7 +28,7 @@ export const Post: React.FC<T.PostProps> = ({
     content: newContent,
   } as const;
 
-  async function handleDeletePost(id: number) {
+  function handleDeletePost(id: number) {
     api.delete(id);
     setIsPopUpOpen(false);
     setTimeout(() => {
@@ -36,7 +36,7 @@ export const Post: React.FC<T.PostProps> = ({
     }, 300);
   }
 
-  async function handleEditPost(id: number) {
+  function handleEditPost(id: number) {
     api.edit(id, newPost);
     setIsModalOpen(false);
     setTimeout(() => {

@@ -20,7 +20,7 @@ export const NewPost = () => {
     content,
   } as const;
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setTitle("");
     setContent("");
