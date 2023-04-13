@@ -16,8 +16,8 @@ export const Post: React.FC<T.PostProps> = ({
   username,
   ...props
 }) => {
-  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [newTitle, setTitle] = useState("");
   const [newContent, setContent] = useState("");
   const context = useContext(UserContext);
@@ -33,7 +33,7 @@ export const Post: React.FC<T.PostProps> = ({
     setTimeout(() => {
       refetch?.();
     }, REFETCH_DELAY);
-    setIsPopUpOpen(false);
+    setIsDeleteModalOpen(false);
   }
 
   function handleEditPost(id: number) {
@@ -41,25 +41,25 @@ export const Post: React.FC<T.PostProps> = ({
     setTimeout(() => {
       refetch?.();
     }, REFETCH_DELAY);
-    setIsModalOpen(false);
+    setIsEditModalOpen(false);
   }
 
   function showPopUp(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.preventDefault();
-    setIsPopUpOpen(true);
+    setIsDeleteModalOpen(true);
   }
 
   function closePopUp() {
-    setIsPopUpOpen(false);
+    setIsDeleteModalOpen(false);
   }
 
   function showModal(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.preventDefault();
-    setIsModalOpen(true);
+    setIsEditModalOpen(true);
   }
 
   function closeModal() {
-    setIsModalOpen(false);
+    setIsEditModalOpen(false);
   }
 
   if (isLoading) {
@@ -90,7 +90,7 @@ export const Post: React.FC<T.PostProps> = ({
         </S.UserContainer>
         <S.PostContent>{content}</S.PostContent>
       </S.CardContent>
-      <Modal isOpen={isPopUpOpen} onClose={closePopUp}>
+      <Modal isOpen={isDeleteModalOpen} onClose={closePopUp}>
         <S.PopUp>
           <Typography variant="paragraph">
             Are you sure you want to delete this item?
@@ -106,7 +106,7 @@ export const Post: React.FC<T.PostProps> = ({
         </S.PopUp>
       </Modal>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isEditModalOpen} onClose={closeModal}>
         <S.EditModal>
           <Typography variant="title" as="h2">
             Edit item

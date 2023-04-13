@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Label = styled(Typography).attrs({
-  forwardedAs: "label",
   variant: "label",
 })`
   ${({ theme }) => css`
@@ -31,6 +30,8 @@ export const TextArea = styled(Typography).attrs({
     border-width: ${theme.border.width};
     border-color: ${theme.colors.text.secondary};
     transition: ease-in 150ms;
+    resize: none;
+    /* white-space: pre-line; */
     &:focus {
       border-color: ${theme.colors.text.primary};
     }

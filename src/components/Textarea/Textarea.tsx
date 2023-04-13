@@ -16,7 +16,9 @@ export const TextArea: React.FC<T.TextAreaProps> = ({
 }) => {
   return (
     <S.Wrapper>
-      {label && <S.Label>{label}</S.Label>}
+      <S.Label forwardedAs="label" htmlFor={id}>
+        {label}
+      </S.Label>
       <S.TextArea
         id={id}
         placeholder={placeholder}

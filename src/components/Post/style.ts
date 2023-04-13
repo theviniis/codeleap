@@ -52,7 +52,9 @@ export const Created = styled(Typography).attrs({
   white-space: nowrap;
 `;
 
-export const PostContent = styled(Typography).attrs({ variant: "paragraph" })``;
+export const PostContent = styled(Typography).attrs({ variant: "paragraph" })`
+  white-space: pre-line;
+`;
 
 export const PopUp = styled.div`
   p {
