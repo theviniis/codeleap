@@ -18,6 +18,7 @@ export const Label = styled(Typography).attrs({
 
 export const TextArea = styled.textarea`
   ${({ theme }) => css`
+    background: none;
     outline: none;
     padding-block: ${theme.spacing.xs};
     padding-inline: 12px;

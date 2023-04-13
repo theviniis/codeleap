@@ -18,6 +18,7 @@ export const Label = styled(Typography).attrs({
 
 export const Input = styled.input`
   ${({ theme }) => css`
+    background: none;
     display: block;
     max-width: 100%;
     outline: none;
