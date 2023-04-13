@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Card } from "../Card";
 import { Typography } from "../Typography";
-import { Heading } from "../Heading";
+import { Heading } from "../Heading/Heading";
 
 export const Wrapper = styled(Card)`
   padding: 0;
