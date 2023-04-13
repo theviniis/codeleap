@@ -82,11 +82,11 @@ export const themes: {
     scheme: "dark",
     colors: {
       ...colors,
-      background: "#000",
+      background: "#181818",
       text: {
-        primary: "#fff",
-        secondary: "#777",
-        disabled: "#ccc",
+        primary: "#E6E6E6",
+        secondary: "#727272",
+        disabled: "#535353",
       },
     },
     typography,

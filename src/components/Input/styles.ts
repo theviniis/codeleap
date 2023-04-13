@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import * as T from "./types";
 import { Typography } from "../Typography";
 import { css } from "styled-components";
+import { getTypographyStyles } from "../Typography/styles";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,15 +16,11 @@ export const Label = styled(Typography).attrs({
   `}
 `;
 
-export const Input = styled(Typography).attrs({
-  forwardedAs: "input",
-  variant: "placeholder",
-})<Omit<T.InputProps, "label">>`
+export const Input = styled.input`
   ${({ theme }) => css`
     display: block;
     max-width: 100%;
     outline: none;
-    color: ${theme.colors.text.disabled};
     padding-block: ${theme.spacing.xs};
     padding-inline: 12px;
     border-radius: ${theme.border.radius.sm};
@@ -38,5 +34,10 @@ export const Input = styled(Typography).attrs({
     &:not(:placeholder-shown) {
       color: ${theme.colors.text.secondary};
     }
+    ${getTypographyStyles({
+      theme,
+      variant: "placeholder",
+      color: "disabled",
+    })};
   `};
 `;

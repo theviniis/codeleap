@@ -30,7 +30,6 @@ export const UserContainer = styled.span`
     justify-content: space-between;
     align-items: center;
     gap: ${theme.spacing.xs};
-    color: ${theme.colors.text.secondary};
     margin-block-end: ${theme.spacing.md};
   `};
 `;
@@ -38,6 +37,7 @@ export const UserContainer = styled.span`
 export const Username = styled(Typography).attrs({
   variant: "username",
   truncate: true,
+  color: "secondary",
 })`
   overflow: hidden;
   white-space: nowrap;
@@ -47,6 +47,7 @@ export const Username = styled(Typography).attrs({
 export const Created = styled(Typography).attrs({
   variant: "username",
   truncate: true,
+  color: "secondary",
 })`
   font-weight: 400;
   white-space: nowrap;

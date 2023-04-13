@@ -1,6 +1,6 @@
 import styled, { DefaultTheme, css } from "styled-components";
-import { Typography } from "./Typography";
 import React from "react";
+import { getTypographyStyles } from "./Typography/styles";
 
 type BUTTON_SKINS = "outlined" | "error" | "success" | "primary";
 
@@ -10,13 +10,10 @@ export interface ButtonProps
   skin?: BUTTON_SKINS;
 }
 
-export const Button = styled(Typography).attrs({
-  forwardedAs: "button",
-  variant: "button",
-})<ButtonProps>`
+export const Button = styled.button<Pick<ButtonProps, "skin">>`
   border: none;
   cursor: pointer;
-  color: #fff;
+  ${({ theme }) => getTypographyStyles({ theme, variant: "button" })};
   transition: ease-in 150ms;
   border-style: solid;
   ${({ theme, skin }) => css`
@@ -40,7 +37,7 @@ function setSkin(theme: DefaultTheme, skin: BUTTON_SKINS = "primary") {
     outlined: {
       background: "transparent",
       border: "#999",
-      color: colors.black,
+      color: colors.text.primary,
     },
     primary: {
       background: colors.primary,
