@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     gap: ${theme.spacing.lg};
     padding-inline: ${theme.spacing.lg};
     background-color: ${theme.colors.background};
-    &:h2 {
+    & h2 {
       padding-inline: 37px;
       padding-block: 27px;
       height: 80px;
