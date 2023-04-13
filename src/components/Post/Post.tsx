@@ -26,34 +26,27 @@ export const Post: React.FC<T.PostProps> = ({
   const [newTitle, setTitle] = useState("");
   const [newContent, setContent] = useState("");
   const context = useContext(UserContext);
-  const { posts, setPosts } = useContext(PostsContext);
+  const { refetch } = useContext(PostsContext);
 
   const newPost = {
     title: newTitle,
     content: newContent,
   } as const;
 
-  function handleDeletePost(id: number) {
+  async function handleDeletePost(id: number) {
     api.delete(id);
     setIsPopUpOpen(false);
-    const newArray = posts?.filter((post) => post.id !== id);
-    if (newArray) {
-      setPosts(newArray);
-    }
+    setTimeout(() => {
+      refetch && refetch();
+    }, 200);
   }
 
-  function handleEditPost(id: number) {
+  async function handleEditPost(id: number) {
     api.edit(id, newPost);
-    const newArray = posts?.map((post) => {
-      if (post.id === id) {
-        return { ...post, ...newPost };
-      }
-      return post;
-    });
-    if (newArray) {
-      setPosts(newArray);
-    }
     setIsModalOpen(false);
+    setTimeout(() => {
+      refetch && refetch();
+    }, 200);
   }
 
   function showPopUp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {

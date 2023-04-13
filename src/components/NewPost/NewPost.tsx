@@ -12,7 +12,7 @@ export const NewPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { username } = useContext(UserContext);
-  const { setPosts } = useContext(PostsContext);
+  const { refetch } = useContext(PostsContext);
 
   const newPost = {
     username,
@@ -20,21 +20,14 @@ export const NewPost = () => {
     content,
   } as const;
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    api.post(newPost);
-    setPosts((currentValue) => [
-      {
-        id: Math.floor(Math.random()) * 9999,
-        created_datetime: new Date(),
-        title,
-        username,
-        content,
-      },
-      ...currentValue,
-    ]);
     setTitle("");
     setContent("");
+    api.post(newPost);
+    setTimeout(() => {
+      refetch && refetch();
+    }, 200);
   }
 
   return (

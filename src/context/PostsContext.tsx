@@ -1,38 +1,31 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { POST_PROPS, api } from "../actions";
-import { Loading } from "../components";
+import React, { ReactNode } from "react";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  RefetchQueryFilters,
+  useQuery,
+} from "react-query";
+import { POST_PROPS, RESPONSE_PROPS, api } from "../actions";
 
 export const PostsContext = React.createContext<{
   posts?: POST_PROPS[];
   isLoading: boolean;
-  setPosts: React.Dispatch<React.SetStateAction<POST_PROPS[]>>;
+  refetch?: <TPageData>(
+    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+  ) => Promise<QueryObserverResult<RESPONSE_PROPS, unknown>>;
 }>({
   posts: [],
   isLoading: false,
-  setPosts: () => {},
 });
 
 export const PostsStorage = ({ children }: { children: ReactNode }) => {
-  const [posts, setPosts] = useState<POST_PROPS[]>([]);
-
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: api.get,
   });
 
-  useEffect(() => {
-    if (data) {
-      setPosts([...data?.results]);
-    }
-  }, [data]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <PostsContext.Provider value={{ posts, setPosts, isLoading }}>
+    <PostsContext.Provider value={{ posts: data?.results, isLoading, refetch }}>
       {children}
     </PostsContext.Provider>
   );
