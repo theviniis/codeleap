@@ -22,12 +22,12 @@ export const Post: React.FC<T.PostProps> = ({
   const context = useContext(UserContext);
   const { isLoading, DELETE_POST, EDIT_POST } = useContext(PostsContext);
 
-  function handleDeletePost(id: number) {
+  function handleDeletePost() {
     DELETE_POST(id);
     setIsDeleteModalOpen(false);
   }
 
-  function handleEditPost(id: number) {
+  function handleEditPost() {
     EDIT_POST(id, {
       title: newTitle,
       content: newContent,
@@ -35,21 +35,21 @@ export const Post: React.FC<T.PostProps> = ({
     setIsEditModalOpen(false);
   }
 
-  function showPopUp(e: React.MouseEvent<HTMLElement, MouseEvent>) {
+  function showDeleteModal(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.preventDefault();
     setIsDeleteModalOpen(true);
   }
 
-  function closePopUp() {
+  function closeDeleteModal() {
     setIsDeleteModalOpen(false);
   }
 
-  function showModal(e: React.MouseEvent<HTMLElement, MouseEvent>) {
+  function showEditModal(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.preventDefault();
     setIsEditModalOpen(true);
   }
 
-  function closeModal() {
+  function closeEditModal() {
     setIsEditModalOpen(false);
   }
 
@@ -62,10 +62,10 @@ export const Post: React.FC<T.PostProps> = ({
       <S.Header title={title}>
         {context.username === username && (
           <S.IconsContainer>
-            <Icon onClick={(e) => showPopUp(e)}>
+            <Icon onClick={(e) => showDeleteModal(e)}>
               <DeleteIcon />
             </Icon>
-            <Icon onClick={(e) => showModal(e)}>
+            <Icon onClick={(e) => showEditModal(e)}>
               <EditIcon />
             </Icon>
           </S.IconsContainer>
@@ -80,23 +80,23 @@ export const Post: React.FC<T.PostProps> = ({
         </S.UserContainer>
         <S.PostContent>{content}</S.PostContent>
       </S.CardContent>
-      <Modal isOpen={isDeleteModalOpen} onClose={closePopUp}>
+      <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
         <S.PopUp>
           <Typography variant="paragraph">
             Are you sure you want to delete this item?
           </Typography>
           <S.ModalButtonsContainer>
-            <Button skin="outlined" onClick={closePopUp}>
+            <Button skin="outlined" onClick={closeDeleteModal}>
               Cancel
             </Button>
-            <Button skin="error" onClick={() => handleDeletePost(id)}>
+            <Button skin="error" onClick={handleDeletePost} autoFocus>
               Delete
             </Button>
           </S.ModalButtonsContainer>
         </S.PopUp>
       </Modal>
 
-      <Modal isOpen={isEditModalOpen} onClose={closeModal}>
+      <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
         <S.EditModal>
           <Typography variant="title" as="h2">
             Edit item
@@ -116,10 +116,10 @@ export const Post: React.FC<T.PostProps> = ({
             cols={50}
           />
           <S.ModalButtonsContainer>
-            <Button skin="outlined" onClick={closeModal}>
+            <Button skin="outlined" onClick={closeEditModal}>
               Cancel
             </Button>
-            <Button skin="success" onClick={() => handleEditPost(id)}>
+            <Button skin="success" onClick={handleEditPost}>
               Save
             </Button>
           </S.ModalButtonsContainer>

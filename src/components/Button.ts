@@ -1,33 +1,38 @@
-import styled, { DefaultTheme, css } from "styled-components";
-import React from "react";
+import styled from "styled-components";
 import { getTypographyStyles } from "./Typography/styles";
+import { css } from "styled-components";
+import { DefaultTheme } from "styled-components";
 
-type BUTTON_SKINS = "outlined" | "error" | "success" | "primary";
+export type BUTTON_SKINS = "outlined" | "error" | "success" | "primary";
 
 export interface ButtonProps
   extends React.HtmlHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   skin?: BUTTON_SKINS;
+  autofocus?: boolean;
 }
 
-export const Button = styled.button<Pick<ButtonProps, "skin">>`
+export const Button = styled.button<Pick<ButtonProps, "skin" | "autoFocus">>`
   border: none;
   cursor: pointer;
-  ${({ theme }) => getTypographyStyles({ theme, variant: "button" })};
   transition: ease-in 150ms;
   border-style: solid;
   ${({ theme, skin }) => css`
+    ${getTypographyStyles({ theme, variant: "button" })};
+    ${setSkin(theme, skin)};
     border-width: ${theme.border.width};
     min-width: 120px;
     height: 32px;
     border-radius: ${theme.border.radius.sm};
-    :disabled {
+    &:disabled {
       cursor: not-allowed;
       pointer-events: none;
       background-color: ${theme.colors.text.disabled};
       border-color: ${theme.colors.text.disabled};
     }
-    ${setSkin(theme, skin)};
+    &:focus {
+      outline: ${theme.border.width} solid currentColor;
+    }
   `};
 `;
 
