@@ -51,7 +51,7 @@ Instale as dependências
 Inicie o servidor
 
 ```bash
-  yarn dev
+  yarn start
 ```
 
 ## Deploy
