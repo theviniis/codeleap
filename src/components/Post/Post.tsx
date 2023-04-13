@@ -3,10 +3,9 @@ import * as T from "./types";
 import * as S from "./style";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
-import { api } from "../../actions";
 import { UserContext, PostsContext } from "../../context";
 import { Icon, Modal, Typography, Button, Input, TextArea, Loading } from "../";
-import { REFETCH_DELAY, getMinutesDifference } from "../../utils";
+import { getMinutesDifference } from "../../utils";
 
 export const Post: React.FC<T.PostProps> = ({
   id,
@@ -21,26 +20,18 @@ export const Post: React.FC<T.PostProps> = ({
   const [newTitle, setTitle] = useState("");
   const [newContent, setContent] = useState("");
   const context = useContext(UserContext);
-  const { refetch, isLoading } = useContext(PostsContext);
-
-  const newPost = {
-    title: newTitle,
-    content: newContent,
-  } as const;
+  const { isLoading, DELETE_POST, EDIT_POST } = useContext(PostsContext);
 
   function handleDeletePost(id: number) {
-    api.delete(id);
-    setTimeout(() => {
-      refetch?.();
-    }, REFETCH_DELAY);
+    DELETE_POST(id);
     setIsDeleteModalOpen(false);
   }
 
   function handleEditPost(id: number) {
-    api.edit(id, newPost);
-    setTimeout(() => {
-      refetch?.();
-    }, REFETCH_DELAY);
+    EDIT_POST(id, {
+      title: newTitle,
+      content: newContent,
+    });
     setIsEditModalOpen(false);
   }
 

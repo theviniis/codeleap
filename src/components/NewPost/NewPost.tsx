@@ -5,14 +5,13 @@ import { TextArea } from "../Textarea";
 import { Button } from "../Button";
 import * as S from "./styles";
 import { UserContext } from "../../context";
-import { api } from "../../actions";
 import { PostsContext } from "../../context/PostsContext";
 
 export const NewPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { username } = useContext(UserContext);
-  const { refetch } = useContext(PostsContext);
+  const { NEW_POST } = useContext(PostsContext);
 
   const newPost = {
     username,
@@ -24,10 +23,7 @@ export const NewPost = () => {
     e.preventDefault();
     setTitle("");
     setContent("");
-    api.post(newPost);
-    setTimeout(() => {
-      refetch && refetch();
-    }, 300);
+    NEW_POST(newPost);
   }
 
   return (

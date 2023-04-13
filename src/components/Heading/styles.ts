@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { Typography } from "../Typography";
 
 export const Wrapper = styled.div`
-  /* max-width: 100%; */
   ${({ theme }) => css`
     background-color: ${theme.colors.primary};
     padding: ${theme.spacing.lg};
@@ -16,4 +15,6 @@ export const Heading = styled(Typography).attrs({
   truncate: true,
 })`
   color: #fff;
+  display: flex;
+  justify-content: space-between;
 `;
