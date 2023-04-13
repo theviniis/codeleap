@@ -17,9 +17,8 @@ export const UserContext = React.createContext<UserContextProps>({
 export const UserStorage: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const username = window.localStorage.getItem("username");
     if (username) {

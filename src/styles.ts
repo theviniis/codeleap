@@ -20,11 +20,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    /* display: grid; */
+    /* place-content: center; */
     width: 100%;
+    margin: 0 auto;
+    max-width: ${({ theme }) => theme.maxWidth};
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     ${({ theme }) => css`
       font-family: ${theme.typography.family};
       background-color: ${theme.colors.background};
@@ -37,8 +38,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   #root {
-    width: 100%;
-    max-width: ${({ theme }) => theme.maxWidth};
+    margin: 0 auto;
   }
 `;
 
