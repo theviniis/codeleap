@@ -33,7 +33,7 @@ export const Post: React.FC<T.PostProps> = ({
     setIsPopUpOpen(false);
     setTimeout(() => {
       refetch && refetch();
-    }, 200);
+    }, 300);
   }
 
   async function handleEditPost(id: number) {
@@ -41,7 +41,7 @@ export const Post: React.FC<T.PostProps> = ({
     setIsModalOpen(false);
     setTimeout(() => {
       refetch && refetch();
-    }, 200);
+    }, 300);
   }
 
   function showPopUp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {

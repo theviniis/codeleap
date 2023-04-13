@@ -27,7 +27,7 @@ export const NewPost = () => {
     api.post(newPost);
     setTimeout(() => {
       refetch && refetch();
-    }, 200);
+    }, 300);
   }
 
   return (
