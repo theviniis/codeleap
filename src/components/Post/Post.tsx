@@ -122,6 +122,8 @@ export const Post: React.FC<T.PostProps> = ({
             label="Content"
             value={newContent}
             onChange={(e) => setContent(e.target.value)}
+            rows={4}
+            cols={50}
           />
           <S.ModalButtonsContainer>
             <Button skin="outlined" onClick={closeModal}>

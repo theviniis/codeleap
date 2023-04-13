@@ -6,4 +6,6 @@ export interface TextAreaProps
   type?: "text" | "password";
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  cols?: number;
+  rows?: number;
 }

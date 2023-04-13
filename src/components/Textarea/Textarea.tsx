@@ -8,6 +8,8 @@ export const TextArea: React.FC<T.TextAreaProps> = ({
   id = crypto.randomUUID(),
   placeholder = "",
   value = "",
+  cols,
+  rows,
   onChange,
   onBlur,
   ...props
@@ -21,8 +23,10 @@ export const TextArea: React.FC<T.TextAreaProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        cols={cols}
+        rows={rows}
         {...props}
-      ></S.TextArea>
+      />
     </S.Wrapper>
   );
 };

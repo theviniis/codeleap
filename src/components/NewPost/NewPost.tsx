@@ -44,6 +44,8 @@ export const NewPost = () => {
         label="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        rows={4}
+        cols={50}
       />
       <Button disabled={(title.length <= 0 || content.length <= 0) && true}>
         {"Create"}
