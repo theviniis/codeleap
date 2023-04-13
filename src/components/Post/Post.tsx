@@ -51,6 +51,8 @@ export const Post: React.FC<T.PostProps> = ({
 
   function closeEditModal() {
     setIsEditModalOpen(false);
+    setTitle("");
+    setContent("");
   }
 
   if (isLoading) {
