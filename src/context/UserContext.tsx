@@ -1,11 +1,8 @@
 import React, { ReactNode, useState } from "react";
-import { PostProps } from "../pages";
 
 type UserContextProps = {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
-  posts?: PostProps;
-  isLoading?: boolean;
 };
 
 export const UserContext = React.createContext<UserContextProps>({
@@ -16,7 +13,9 @@ export const UserContext = React.createContext<UserContextProps>({
 export const UserStorage: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") ?? ""
+  );
   return (
     <UserContext.Provider value={{ username, setUsername }}>
       {children}
