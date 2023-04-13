@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import { memo, useContext } from "react";
 import * as S from "./style";
-import { Heading, Loading, NewPost, Post } from "../../components";
-import { PostsContext } from "../../context/PostsContext";
+import { Heading, Loading, NewPost, Post as P } from "../../components";
+import { PostsContext } from "../../context";
+
+const Post = memo(P);
 
 export const Main = () => {
   const { posts, isLoading } = useContext(PostsContext);

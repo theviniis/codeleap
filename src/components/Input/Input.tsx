@@ -14,7 +14,7 @@ export const Input: React.FC<T.InputProps> = ({
 }) => {
   return (
     <S.Wrapper>
-      {label && <S.Label>{label}</S.Label>}
+      <S.Label>{label}</S.Label>
       <S.Input
         id={id}
         placeholder={placeholder}

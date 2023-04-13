@@ -20,7 +20,7 @@ export const Label = styled(Typography).attrs({
 export const Input = styled(Typography).attrs({
   forwardedAs: "input",
   variant: "placeholder",
-})<T.InputProps>`
+})<Omit<T.InputProps, "label">>`
   ${({ theme }) => css`
     display: block;
     max-width: 100%;

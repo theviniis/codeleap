@@ -3,15 +3,10 @@ import * as T from "./types";
 import * as S from "./style";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
-import { api, getMinutesDifference } from "../../actions";
-import { UserContext } from "../../context";
-import { Icon } from "../Icon";
-import { Modal } from "../Modal";
-import { Typography } from "../Typography";
-import { Button } from "../Button";
-import { Input } from "../Input";
-import { TextArea } from "../Textarea";
-import { PostsContext } from "../../context/PostsContext";
+import { api } from "../../actions";
+import { UserContext, PostsContext } from "../../context";
+import { Icon, Modal, Typography, Button, Input, TextArea } from "../";
+import { getMinutesDifference } from "../../utils";
 
 export const Post: React.FC<T.PostProps> = ({
   id,
