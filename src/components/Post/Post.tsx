@@ -3,12 +3,7 @@ import * as T from "./types";
 import * as S from "./style";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
-import {
-  DELETE_POST,
-  EDIT_POST,
-  getMinutesDifference,
-  useFetch,
-} from "../../actions";
+import { api, getMinutesDifference } from "../../actions";
 import { UserContext } from "../../context";
 import { Icon } from "../Icon";
 import { Modal } from "../Modal";
@@ -16,6 +11,7 @@ import { Typography } from "../Typography";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { TextArea } from "../Textarea";
+import { PostsContext } from "../../context/PostsContext";
 
 export const Post: React.FC<T.PostProps> = ({
   id,
@@ -30,20 +26,33 @@ export const Post: React.FC<T.PostProps> = ({
   const [newTitle, setTitle] = useState("");
   const [newContent, setContent] = useState("");
   const context = useContext(UserContext);
-  const { request } = useFetch();
+  const { posts, setPosts } = useContext(PostsContext);
+
+  const newPost = {
+    title: newTitle,
+    content: newContent,
+  } as const;
 
   function handleDeletePost(id: number) {
-    const { url, options } = DELETE_POST(id);
-    request(url, options);
+    api.delete(id);
     setIsPopUpOpen(false);
+    const newArray = posts?.filter((post) => post.id !== id);
+    if (newArray) {
+      setPosts(newArray);
+    }
   }
 
   function handleEditPost(id: number) {
-    const { url, options } = EDIT_POST(id, {
-      title: newTitle,
-      content: newContent,
+    api.edit(id, newPost);
+    const newArray = posts?.map((post) => {
+      if (post.id === id) {
+        return { ...post, ...newPost };
+      }
+      return post;
     });
-    request(url, options);
+    if (newArray) {
+      setPosts(newArray);
+    }
     setIsModalOpen(false);
   }
 

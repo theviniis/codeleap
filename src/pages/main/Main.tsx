@@ -1,37 +1,18 @@
-import React, { useMemo } from "react";
+import React, { useContext } from "react";
 import * as S from "./style";
 import { Heading, Loading, NewPost, Post } from "../../components";
-import { GET_POSTS, useFetch } from "../../actions";
-
-export type PostProps = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Array<{
-    content: string;
-    created_datetime: Date;
-    id: number;
-    title: string;
-    username: string;
-  }>;
-};
+import { PostsContext } from "../../context/PostsContext";
 
 export const Main = () => {
-  const { data, loading, request } = useFetch<PostProps>();
-
-  useMemo(() => {
-    const { url, options } = GET_POSTS();
-    request(url, options);
-  }, [request]);
-
+  const { posts, isLoading } = useContext(PostsContext);
   return (
     <S.Wrapper>
       <Heading>CodeLeap Network</Heading>
       <NewPost />
-      {loading && <Loading />}
-      {data &&
-        !loading &&
-        data.results.map((post) => (
+      {isLoading && <Loading />}
+      {posts &&
+        !isLoading &&
+        posts.map((post) => (
           <Post
             key={post.id}
             id={post.id}

@@ -11,7 +11,6 @@ export const SignUp = () => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("hey");
     localStorage.setItem("username", username);
     context.setUsername(username);
     if (username) navigate("/main");
