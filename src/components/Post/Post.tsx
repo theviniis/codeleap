@@ -5,7 +5,7 @@ import { ReactComponent as DeleteIcon } from "../../assets/icons/delete.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
 import { api } from "../../actions";
 import { UserContext, PostsContext } from "../../context";
-import { Icon, Modal, Typography, Button, Input, TextArea } from "../";
+import { Icon, Modal, Typography, Button, Input, TextArea, Loading } from "../";
 import { getMinutesDifference } from "../../utils";
 
 export const Post: React.FC<T.PostProps> = ({
@@ -21,7 +21,7 @@ export const Post: React.FC<T.PostProps> = ({
   const [newTitle, setTitle] = useState("");
   const [newContent, setContent] = useState("");
   const context = useContext(UserContext);
-  const { refetch } = useContext(PostsContext);
+  const { refetch, isLoading } = useContext(PostsContext);
 
   const newPost = {
     title: newTitle,
@@ -60,6 +60,10 @@ export const Post: React.FC<T.PostProps> = ({
 
   function closeModal() {
     setIsModalOpen(false);
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
