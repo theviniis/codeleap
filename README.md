@@ -1,47 +1,63 @@
-# Getting Started with Create React App
+# CodeLeap
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este app foi criado para o teste de desenvolvedor front-end da **CodeLeap**.
 
-## Available Scripts
+## Stacks utilizadas
 
-In the project directory, you can run:
+**Front-end:** React, react-router-dom, history, styled-components
 
-### `yarn start`
+## Roadmap
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Definir os tokens, como, tipografia, espaçamento, cores;
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Definir o layout da aplicação com base no modelo do figma;
 
-### `yarn test`
+- Definir as rotas da aplicação;
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Criar o contexto de usuário para armazenar o **username** e salvar no **local storage**;
 
-### `yarn build`
+- Criar a uma api para realizar o **CRUDE**;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Trabalhar nas etapas de **CRUDE**;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Ajustes na responsividade;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Melhorias
 
-### `yarn eject`
+- Ao **adicionar, editar ou deletar** um post, atualizar a timeline.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Melhor feedback na exibição dos erros e requisições;
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Rodando localmente
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Clone o projeto
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+  git clone https://github.com/theviniis/codeleap.git
+```
 
-## Learn More
+Entre no diretório do projeto
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  cd codeleap
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# codeleap
+Instale as dependências
+
+```bash
+  yarn install
+```
+
+Inicie o servidor
+
+```bash
+  yarn dev
+```
+
+## Deploy
+
+Para fazer o deploy desse projeto rode
+
+```bash
+  yarn build
+```
