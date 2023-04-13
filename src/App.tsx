@@ -1,10 +1,18 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { SignUp, Main } from "./pages";
+import { UserStorage } from "./context";
 
 function App() {
   return (
-    <div className="App">
-      home
-    </div>
+    <BrowserRouter>
+      <UserStorage>
+        <Routes>
+          <Route path="/" element={<SignUp />} />
+          <Route path="/main" element={<Main />} />
+        </Routes>
+      </UserStorage>
+    </BrowserRouter>
   );
 }
 

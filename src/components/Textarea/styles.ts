@@ -1,0 +1,41 @@
+import styled from "styled-components";
+import * as T from "./types";
+import { Typography } from "../Typography";
+import { css } from "styled-components";
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Label = styled(Typography).attrs({
+  forwardedAs: "label",
+  variant: "label",
+})`
+  ${({ theme }) => css`
+    margin-bottom: ${theme.spacing.xs};
+  `}
+`;
+
+export const TextArea = styled(Typography).attrs({
+  forwardedAs: "textarea",
+  variant: "placeholder",
+})<T.TextAreaProps>`
+  ${({ theme }) => css`
+    outline: none;
+    color: ${theme.colors.text.disabled};
+    padding-block: ${theme.spacing.xs};
+    padding-inline: 12px;
+    border-radius: ${theme.border.radius.sm};
+    border-style: solid;
+    border-width: ${theme.border.width};
+    border-color: ${theme.colors.text.secondary};
+    transition: ease-in 150ms;
+    &:focus {
+      border-color: ${theme.colors.text.primary};
+    }
+    &:not(:placeholder-shown) {
+      color: ${theme.colors.text.secondary};
+    }
+  `};
+`;
