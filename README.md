@@ -16,9 +16,9 @@ Este app foi criado para o teste de desenvolvedor front-end da **CodeLeap**.
 
 - Criar o contexto de usuário para armazenar o **username** e salvar no **local storage**;
 
-- Criar a uma api para realizar o **CRUDE**;
+- Criar a uma api para realizar o **CRUD**;
 
-- Trabalhar nas etapas de **CRUDE**;
+- Trabalhar nas etapas de **CRUD**;
 
 - Ajustes na responsividade;
 
