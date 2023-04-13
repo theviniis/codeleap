@@ -35,13 +35,19 @@ export const UserContainer = styled.span`
   `};
 `;
 
-export const Username = styled(Typography).attrs({ variant: "username" })`
+export const Username = styled(Typography).attrs({
+  variant: "username",
+  truncate: true,
+})`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
-export const Created = styled(Typography).attrs({ variant: "username" })`
+export const Created = styled(Typography).attrs({
+  variant: "username",
+  truncate: true,
+})`
   font-weight: 400;
   white-space: nowrap;
 `;
