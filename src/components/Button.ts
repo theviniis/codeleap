@@ -31,7 +31,7 @@ export const Button = styled.button<Pick<ButtonProps, "skin" | "autoFocus">>`
       border-color: ${theme.colors.text.disabled};
     }
     &:focus {
-      outline: ${theme.border.width} solid currentColor;
+      outline: ${theme.border.width} solid ${theme.colors.text.primary};
     }
   `};
 `;
