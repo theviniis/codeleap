@@ -7,8 +7,6 @@ export const Wrapper = styled.div`
     flex-direction: column;
     gap: ${theme.spacing.lg};
     padding-inline: ${theme.spacing.lg};
-    background-color: ${theme.colors.background};
-    transition: background-color ease-in 150ms;
   `};
 `;
 

@@ -20,6 +20,7 @@ export const Backdrop = styled.span`
 export const Modal = styled(Card)`
   z-index: 20;
   width: clamp(300px, 50vw, 660px);
+  transition: ease-in 150ms;
   animation: slideForward 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   @keyframes slideForward {
     from {
