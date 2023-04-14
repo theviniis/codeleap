@@ -51,6 +51,7 @@ export const typography = {
 export const maxWidth = "800px";
 
 export const spacing = {
+  xxs: "4px",
   xs: "8px",
   sm: "12px",
   md: "16px",

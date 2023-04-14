@@ -9,3 +9,4 @@ export * from "./Modal";
 export * from "./Icon";
 export * from "./Loading";
 export * from "./Textarea";
+export * from "./ToggleThemeIcon";

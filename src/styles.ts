@@ -20,13 +20,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    /* display: grid; */
-    /* place-content: center; */
     width: 100%;
     margin: 0 auto;
-    max-width: ${({ theme }) => theme.maxWidth};
     min-height: 100vh;
+    transition: background-color ease-in 150ms;
     ${({ theme }) => css`
+      max-width: ${theme.maxWidth};
       font-family: ${theme.typography.family};
       background-color: ${theme.colors.background};
       color: ${theme.colors.text};

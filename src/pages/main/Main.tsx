@@ -1,15 +1,12 @@
 import { memo, useContext } from "react";
 import * as S from "./style";
-import { Loading, NewPost, Post as P } from "../../components";
-import { PostsContext, ThemeContext } from "../../context";
-import { ReactComponent as DarkIcon } from "../../assets/icons/dark_mode.svg";
-import { ReactComponent as LightIcon } from "../../assets/icons/light_mode.svg";
+import { Loading, NewPost, Post as P, ToggleThemeIcon } from "../../components";
+import { PostsContext } from "../../context";
 
 const Post = memo(P);
 
 export const Main = () => {
   const { posts, isLoading } = useContext(PostsContext);
-  const { scheme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <S.Wrapper>
@@ -28,9 +25,7 @@ export const Main = () => {
             content={post.content}
           />
         ))}
-      <S.ThemeIcon onClick={toggleTheme}>
-        {scheme === "dark" ? <LightIcon /> : <DarkIcon />}
-      </S.ThemeIcon>
+      <ToggleThemeIcon />
     </S.Wrapper>
   );
 };
