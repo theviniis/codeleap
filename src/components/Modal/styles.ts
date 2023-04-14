@@ -25,11 +25,11 @@ export const Modal = styled(Card)`
   @keyframes slideForward {
     from {
       opacity: 0;
-      transform: scale(0.75) translateY(-20px);
+      transform: scale(0.5);
     }
     to {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: scale(1);
     }
   }
 `;
